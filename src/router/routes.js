@@ -1,6 +1,6 @@
 const routes = [
   {
-    path: "/",
+    path: "/inicio",
     component: () => import("layouts/MainLayout.vue"),
     children: [
       { path: "", component: () => import("pages/IndexPage.vue") },
@@ -14,13 +14,18 @@ const routes = [
   },
   // login
   {
-    path: "/login",
+    path: "/",
     component: () => import("layouts/BlankLayout.vue"),
     children: [
       {
         path: "",
         name: "login",
         component: () => import("pages/Login.vue"),
+      },
+      {
+        path: "registrar",
+        name: "registrar",
+        component: () => import("pages/Registro.vue"),
       },
     ],
   },
