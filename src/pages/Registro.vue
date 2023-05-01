@@ -1,14 +1,22 @@
 <template>
   <q-page padding class="row flex-center bg-purple-10">
-    <div class="bg-white col-12 col-sm-9 col-md-8">
-      <q-img
-        src="https://cdn.quasar.dev/img/mountains.jpg"
-        spinner-color="white"
-      />
+    <q-card class="bg-white col-12 col-sm-9 col-md-6">
+      <q-card-section class="text-center">
+        <q-img
+          src="../../public/img/banner_email.png"
+          style="max-width: 500px"
+          spinner-color="white"
+          key="cover"
+          fit="cover"
+        />
+      </q-card-section>
 
-      <h4 class="text-center text-purple text-h4 q-my-md">Registrarse</h4>
+      <h4 class="text-center text-purple text-h4 q-my-sm">Registrarse</h4>
 
-      <q-form class="row justify-center q-gutter-y-md q-pb-md">
+      <q-form
+        class="row justify-center q-gutter-y-sm q-pb-md"
+        @submit.prevent="procesarFormulario"
+      >
         <div class="col-11 col-sm-9 col-md-6 q-px-md">
           <q-input
             color="purple"
@@ -17,6 +25,7 @@
             outlined
             rounded
             v-model="cedula"
+            :rules="[(val) => !!val || 'Por favor escriba su cédula']"
           >
             <template v-slot:prepend>
               <q-icon name="person" color="purple" />
@@ -33,6 +42,7 @@
             rounded
             type="tel"
             v-model="telefono"
+            :rules="[(val) => !!val || 'Por favor escriba su teléfono']"
           >
             <template v-slot:prepend>
               <q-icon name="call" color="purple" />
@@ -49,6 +59,7 @@
             rounded
             type="email"
             v-model="correo"
+            :rules="[(val) => !!val || 'Por favor escriba su correo']"
           >
             <template v-slot:prepend>
               <q-icon name="mail" color="purple" />
@@ -65,6 +76,7 @@
             rounded
             :type="isPwd ? 'password' : 'text'"
             v-model="clave"
+            :rules="[(val) => !!val || 'Por favor escriba su contraseña']"
           >
             <template v-slot:prepend>
               <q-icon name="lock" color="purple" />
@@ -89,6 +101,11 @@
             rounded
             :type="isPwd ? 'password' : 'text'"
             v-model="confirmarClave"
+            :rules="[
+              (val) =>
+                (val && val == clave) ||
+                'Por favor escriba la misma contraseña',
+            ]"
           >
             <template v-slot:prepend>
               <q-icon name="lock" color="purple" />
@@ -126,7 +143,7 @@
           />
         </div>
       </q-form>
-    </div>
+    </q-card>
   </q-page>
 </template>
 
@@ -143,6 +160,10 @@ export default defineComponent({
     const clave = ref(null);
     const confirmarClave = ref(null);
 
+    const procesarFormulario = () => {
+      console.log("envio el formulario");
+    };
+
     return {
       isPwd: ref(true),
       cedula,
@@ -150,6 +171,7 @@ export default defineComponent({
       correo,
       clave,
       confirmarClave,
+      procesarFormulario,
     };
   },
 });
