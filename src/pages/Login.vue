@@ -1,79 +1,129 @@
 <template>
-  <q-page class="flex flex-center">
-    <div class="row flex-center">
-      <div class="col-12 col-sm-10 col-md-6 col-lg-4">
-        <q-card class="my-card">
-          <img src="https://cdn.quasar.dev/img/mountains.jpg" />
+  <q-page padding class="row flex-center bg-purple-10">
+    <q-card class="bg-white col-12 col-sm-8 col-md-4">
+      <q-card-section class="text-center">
+        <q-img
+          src="../../public/img/banner_email.png"
+          style="max-width: 500px"
+          spinner-color="white"
+          key="cover"
+          fit="cover"
+        />
+      </q-card-section>
 
-          <q-card-section>
-            <!-- Cedula -->
-            <q-input
-              rounded
-              outlined
-              v-model="text"
-              label="Cédula"
-              color="purple-6"
-            >
-              <template v-slot:prepend>
-                <q-icon name="person" color="purple-6" />
-              </template>
-            </q-input>
-          </q-card-section>
+      <!-- <h4 class="text-center text-purple text-h4 q-my-sm text-weight-bold">
+        Bienvenidos
+      </h4> -->
 
-          <!-- Contraseña -->
-          <q-card-section>
-            <q-input
-              v-model="password"
-              rounded
-              outlined
-              :type="isPwd ? 'password' : 'text'"
-              label="Contraseña"
-              color="purple-6"
-            >
-              <template v-slot:prepend>
-                <q-icon name="key" color="purple-6" />
-              </template>
-              <template v-slot:append>
-                <q-icon
-                  :name="isPwd ? 'visibility_off' : 'visibility'"
-                  class="cursor-pointer"
-                  @click="isPwd = !isPwd"
-                />
-              </template>
-            </q-input>
-          </q-card-section>
+      <q-form
+        class="row justify-center q-gutter-y-sm q-pb-lg"
+        @submit.prevent="procesarFormulario"
+      >
+        <div class="col-10">
+          <q-input
+            color="purple"
+            label="Cédula"
+            label-color="purple"
+            outlined
+            rounded
+            v-model="cedula"
+            :rules="[(val) => !!val || 'Por favor escriba su cédula']"
+          >
+            <template v-slot:prepend>
+              <q-icon name="person" color="purple" />
+            </template>
+          </q-input>
+        </div>
 
-          <q-card-section class="flex justify-between items-center">
-            <q-checkbox
-              v-model="right"
-              label="Mantener sesion"
-              color="purple-6"
-            />
-            <span class="text-purple-6 cursor-pointer"
-              >¿Olvido su contraseña?</span
-            >
-          </q-card-section>
+        <div class="col-10">
+          <q-input
+            color="purple"
+            label="Contraseña"
+            label-color="purple"
+            outlined
+            rounded
+            :type="isPwd ? 'password' : 'text'"
+            v-model="clave"
+            :rules="[(val) => !!val || 'Por favor escriba su contraseña']"
+          >
+            <template v-slot:prepend>
+              <q-icon name="lock" color="purple" />
+            </template>
+            <template v-slot:append>
+              <q-icon
+                :name="isPwd ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="isPwd = !isPwd"
+                color="purple"
+              />
+            </template>
+          </q-input>
+        </div>
 
-          <!-- boton -->
-          <q-card-section>
-            <q-btn
-              class="full-width"
-              label="Entrar"
-              type="submit"
-              color="purple-6"
-              rounded
-            />
-          </q-card-section>
-        </q-card>
-      </div>
-    </div>
+        <div class="col-10 flex justify-between items-center">
+          <q-checkbox
+            class="text-purple text-weight-medium"
+            keep-color
+            v-model="check"
+            color="purple"
+            label="Mantener Sesión"
+          />
+
+          <q-btn
+            label="¿Olvido su contraseña?"
+            flat
+            color="purple"
+            no-caps
+            type="button"
+            to="recuperar/clave"
+          />
+        </div>
+
+        <div class="col-10 text-center q-mb-md">
+          <q-btn
+            label="Entrar"
+            class="full-width"
+            rounded
+            color="purple"
+            padding="xs lg"
+            size="lg"
+          />
+        </div>
+        <div class="col-10 text-center">
+          <q-btn
+            label="Registrarse"
+            class="full-width"
+            rounded
+            color="pink"
+            padding="xs lg"
+            size="md"
+          />
+        </div>
+      </q-form>
+    </q-card>
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "PageLogin",
+  setup() {
+    const cedula = ref();
+    const clave = ref();
+    const check = ref(false);
+    const procesarFormulario = () => {
+      console.log("envio el formulario");
+    };
+
+    return {
+      isPwd: ref(true),
+      cedula,
+      clave,
+      check,
+      procesarFormulario,
+    };
+  },
 });
 </script>

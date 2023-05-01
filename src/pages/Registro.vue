@@ -1,6 +1,6 @@
 <template>
   <q-page padding class="row flex-center bg-purple-10">
-    <q-card class="bg-white col-12 col-sm-9 col-md-6">
+    <q-card class="bg-white col-12 col-sm-8 col-md-6">
       <q-card-section class="text-center">
         <q-img
           src="../../public/img/banner_email.png"
@@ -11,7 +11,9 @@
         />
       </q-card-section>
 
-      <h4 class="text-center text-purple text-h4 q-my-sm">Registrarse</h4>
+      <h4 class="text-center text-purple text-h4 q-my-sm text-weight-bold">
+        Registrarse
+      </h4>
 
       <q-form
         class="row justify-center q-gutter-y-sm q-pb-md"
@@ -148,8 +150,8 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
+// import { ref } from "vue";
 
 export default defineComponent({
   name: "PageRegistro",
