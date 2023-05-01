@@ -3,7 +3,7 @@
     <q-card class="bg-white col-12 col-sm-8 col-md-4">
       <q-card-section class="text-center">
         <q-img
-          src="../../public/img/banner_email.png"
+          src="/img/banner_email.png"
           style="max-width: 500px"
           spinner-color="white"
           key="cover"
@@ -27,6 +27,7 @@
             outlined
             rounded
             v-model="cedula"
+            lazy-rules
             :rules="[(val) => !!val || 'Por favor escriba su cédula']"
           >
             <template v-slot:prepend>
@@ -44,6 +45,7 @@
             rounded
             :type="isPwd ? 'password' : 'text'"
             v-model="clave"
+            lazy-rules
             :rules="[(val) => !!val || 'Por favor escriba su contraseña']"
           >
             <template v-slot:prepend>
@@ -87,6 +89,7 @@
             color="purple"
             padding="xs lg"
             size="lg"
+            to="inicio"
           />
         </div>
         <div class="col-10 text-center">
@@ -97,6 +100,7 @@
             color="pink"
             padding="xs lg"
             size="md"
+            to="registro"
           />
         </div>
       </q-form>

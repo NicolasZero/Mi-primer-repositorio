@@ -3,7 +3,7 @@
     <q-card class="bg-white col-12 col-sm-8 col-md-6">
       <q-card-section class="text-center">
         <q-img
-          src="../../public/img/banner_email.png"
+          src="/img/banner_email.png"
           style="max-width: 500px"
           spinner-color="white"
           key="cover"
@@ -27,6 +27,7 @@
             outlined
             rounded
             v-model="cedula"
+            lazy-rules
             :rules="[(val) => !!val || 'Por favor escriba su cédula']"
           >
             <template v-slot:prepend>
@@ -44,6 +45,7 @@
             rounded
             type="tel"
             v-model="telefono"
+            lazy-rules
             :rules="[(val) => !!val || 'Por favor escriba su teléfono']"
           >
             <template v-slot:prepend>
@@ -61,6 +63,7 @@
             rounded
             type="email"
             v-model="correo"
+            lazy-rules
             :rules="[(val) => !!val || 'Por favor escriba su correo']"
           >
             <template v-slot:prepend>
@@ -78,6 +81,7 @@
             rounded
             :type="isPwd ? 'password' : 'text'"
             v-model="clave"
+            lazy-rules
             :rules="[(val) => !!val || 'Por favor escriba su contraseña']"
           >
             <template v-slot:prepend>
@@ -103,6 +107,7 @@
             rounded
             :type="isPwd ? 'password' : 'text'"
             v-model="confirmarClave"
+            lazy-rules
             :rules="[
               (val) =>
                 (val && val == clave) ||
@@ -151,11 +156,12 @@
 
 <script>
 import { defineComponent, ref } from "vue";
-// import { ref } from "vue";
+import { useQuasar } from "quasar";
 
 export default defineComponent({
   name: "PageRegistro",
   setup() {
+    const $q = useQuasar();
     const cedula = ref(null);
     const telefono = ref(null);
     const correo = ref(null);
@@ -164,6 +170,12 @@ export default defineComponent({
 
     const procesarFormulario = () => {
       console.log("envio el formulario");
+      $q.notify({
+        color: "green-4",
+        textColor: "white",
+        icon: "cloud_done",
+        message: "Usuario registrado",
+      });
     };
 
     return {
