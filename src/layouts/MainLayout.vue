@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header bordered class="bg-purple">
+    <q-header reveal bordered class="bg-purple">
       <!-- <q-toolbar>
         <q-btn flat icon="star" to="/inicio" label="Inicio" />
         <q-btn flat icon="menu_book" to="/educacion" label="Educación" />
