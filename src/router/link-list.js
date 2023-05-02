@@ -17,10 +17,4 @@ export const linksList = [
     icon: "assignment",
     link: "encuesta",
   },
-  {
-    title: "Docs",
-    caption: "quasar.dev",
-    icon: "school",
-    link: "https://quasar.dev",
-  },
 ];
