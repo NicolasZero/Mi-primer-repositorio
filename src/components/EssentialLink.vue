@@ -1,7 +1,8 @@
 <template>
   <q-item clickable tag="a" @click="navigateTo">
     <q-item-section v-if="icon" avatar>
-      <q-icon :name="icon" />
+      <q-icon :name="icon" v-if="active == true" color="purple" />
+      <q-icon :name="icon" v-else />
     </q-item-section>
 
     <q-item-section>
@@ -36,6 +37,11 @@ export default defineComponent({
     icon: {
       type: String,
       default: "",
+    },
+
+    active: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {

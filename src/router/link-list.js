@@ -1,5 +1,11 @@
 export const linksList = [
   {
+    title: "Noticias",
+    caption: "Ver las noticias",
+    icon: "newspaper",
+    link: "foro",
+  },
+  {
     title: "Foro",
     caption: "Ver Foros",
     icon: "textsms",
